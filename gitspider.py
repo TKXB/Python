@@ -113,7 +113,7 @@ def GET_EVERY_PAGE_URL(number,headers):
 
 
 def GET_PAGE_INFO(content,headers):
-    url_flag = r'<a.*?href="(/.*?)">'
+    url_flag = r'<a.*?href="(/.*?)">'     #must use .*? repeat any time
     url_re=re.compile(url_flag)
     url_regx=url_re.findall(content)
     arrlen = len(url_regx)
