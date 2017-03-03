@@ -28,8 +28,8 @@ def Get_Auto_Get_Session():
     header = Get_Header(r.headers['Set-Cookie'])
     LoginHeader = {'Cookie': header,'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     token = Get_Token(r.text)
-    payload = {'csrf_token':token,'name':'zhongyu.wang',
-            'password':'Wokaole@547236'}
+    payload = {'csrf_token':token,'name':'123',
+            'password':'123'}
 
     LoginResult = requests.post(url,data=payload,headers=LoginHeader)
     return LoginResult.headers['Set-Cookie']
