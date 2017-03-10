@@ -1,0 +1,32 @@
+from pwn import *
+i = 0
+File = open("key.txt",'a+')
+
+def CheckFile(KEY):
+	File = open("key.txt")
+	for line in File:
+		if line.strip('\n') == KEY:
+			print "Same KEY: " + line
+			File.close()
+			return False
+	File.close()
+	return True
+
+while i < 500:
+	try:
+		conn = remote('vuln2014.picoctf.com',51818)
+		KEY = conn.recvall().strip('\n')[-256:]
+		CheckResult = CheckFile(KEY)
+		if CheckResult == False:
+			i = i+1
+			continue
+                File = open("key.txt",'a+')
+		File.write(KEY)
+		File.write('\n')
+		File.flush()
+		conn.close()
+		File.close()
+		i = i+1
+	except Exception,e:
+		print Exception,":",e
+		pass
